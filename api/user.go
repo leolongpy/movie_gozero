@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/tal-tech/go-zero/core/logx"
+	"time"
 
 	"movie_gozero/api/internal/config"
 	"movie_gozero/api/internal/handler"
@@ -19,6 +21,15 @@ func main() {
 
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
+
+	fileName := time.Now().Format("20060102")
+	logc := logx.LogConf{
+		ServiceName: "user",
+		Mode:        "file",
+		Path:        "logs\\user\\" + fileName,
+	}
+	logx.MustSetup(logc)
+	defer logx.Close()
 
 	ctx := svc.NewServiceContext(c)
 	server := rest.MustNewServer(c.RestConf)

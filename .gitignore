@@ -17,4 +17,6 @@
 # goland ide
 .idea/
 
-logs/
+rpc/logs/
+
+api/logs/
