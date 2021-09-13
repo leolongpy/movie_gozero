@@ -6,3 +6,8 @@ User:
     Hosts:
       - localhost:2379
     Key: user.rpc
+Cms:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: cms.rpc

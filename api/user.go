@@ -26,7 +26,7 @@ func main() {
 	logc := logx.LogConf{
 		ServiceName: "user",
 		Mode:        "file",
-		Path:        "logs\\user\\" + fileName,
+		Path:        "logs\\" + fileName,
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()

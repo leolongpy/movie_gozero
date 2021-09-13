@@ -1,3 +1,4 @@
 syntax = "v1"
 
 import "movieapi/user.api"
+import "movieapi/cms.api"

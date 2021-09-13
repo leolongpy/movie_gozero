@@ -39,4 +39,139 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 		},
 	)
+
+	engine.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/userLogin",
+				Handler: cmsuserLoginHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/updateMessage",
+				Handler: cmsupdateMessageHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allFilms",
+				Handler: cmsallFilmsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/updateFilm",
+				Handler: cmsupdateFilmHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/deleteFilm",
+				Handler: cmsdeleteFilmHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allUsers",
+				Handler: cmsallUsersHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allAdminUsers",
+				Handler: cmsallAdminUsersHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allComments",
+				Handler: cmsallCommentsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allOrders",
+				Handler: cmsallOrdersHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allAddress",
+				Handler: cmsallAddressHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/addFilm",
+				Handler: cmsaddFilmHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/addAdminUser",
+				Handler: cmsaddAdminUserHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/addAddress",
+				Handler: cmsaddAddressHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/updateAddress",
+				Handler: cmsupdateAddressHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/deleteAddress",
+				Handler: cmsdeleteAddressHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/deleteAdminUser",
+				Handler: cmsdeleteAdminUserHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allMovieHall",
+				Handler: cmsallMovieHallHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/addMovieHall",
+				Handler: cmsaddMovieHallHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/updateMovieHall",
+				Handler: cmsupdateMovieHallHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/deleteMovieHall",
+				Handler: cmsdeleteMovieHallHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allCinemaFilms",
+				Handler: cmsallCinemaFilmsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/addCinemaFilm",
+				Handler: cmsaddCinemaFilmHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/updateCinemaFilm",
+				Handler: cmsupdateCinemaFilmHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/deleteCinemaFilm",
+				Handler: cmsdeleteCinemaFilmHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/registerCinema",
+				Handler: cmsregisterCinemaHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/cms/allCinemaHall",
+				Handler: cmsallCinemaHallHandler(serverCtx),
+			},
+		},
+	)
 }
