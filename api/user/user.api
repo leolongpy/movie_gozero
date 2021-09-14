@@ -1,0 +1,68 @@
+syntax = "v1"
+
+type RegistAccountReq {
+    Email string `form:"email"`
+    UserName string `form:"userName"`
+    Password string `form:"password"`
+}
+
+type RegistAccountRsp {
+}
+
+type LoginAccountReq {
+    Email string `form:"email"`
+    Password string `form:"password"`
+}
+
+type LoginAccountRsp {
+    UserID int64 `json:"userId"`
+    UserName string `json:"userName"`
+    Email string `json:"email"`
+    Phone string `json:"phone"`
+}
+
+type ResetAccountReq {
+}
+type ResetAccountRsp {
+}
+
+type WantScoreReq {
+    UserID int64 `form:"userId"`
+    MovieId int64 `form:"movieId"`
+    Score int64 `form:"score"`
+}
+
+type WantScoreRsp {
+}
+
+type UpdateUserProfileReq {
+    UserImage string `form:"userImage"`
+    UserName string `form:"userName"`
+    UserEmail string `form:"userEmail"`
+    UserPhone string `form:"userPhone"`
+    UserID int64 `form:"userId"`
+}
+
+type UpdateUserProfileRsp {
+}
+
+service user-api {
+    //    @server(
+    //        handler: UserHandler
+    //    )
+    // 注册用户
+    @handler registAccount
+    post /user/registAccount (RegistAccountReq) returns (RegistAccountRsp)
+    // 用户登录
+    @handler loginAccount
+    post /user/loginAccount (LoginAccountReq) returns (LoginAccountRsp)
+    // 密码重置
+    @handler resetAccount
+    post /user/resetAccount (ResetAccountReq) returns (ResetAccountRsp)
+    //评分
+    @handler wantScore
+    post /user/wantScore (WantScoreReq) returns (WantScoreRsp)
+    //修改用户信息
+    @handler updateUserProfile
+    post /user/updateUserProfile (UpdateUserProfileReq) returns (UpdateUserProfileRsp)
+}

@@ -1,0 +1,118 @@
+syntax = "proto3";
+package cinema;
+option go_package = "pb";
+
+service CinemaServiceExt {
+  // 地点影城
+  rpc LocationCinema(LocationCinemaReq) returns(LocationCinemaRsp) {}
+  // 根据位置查看有销售对应电影的影院信息
+  // rpc GetCinemaMessage(GetCinemaMessageReq) returns(GetCinemaMessageRsp) {}
+  // 根据id查看影院的信息和即将上映的影片信息
+  rpc GetCinemaMessageByCid(GetCinemaMessageByCidReq) returns(GetCinemaMessageByCidRsp) {}
+  // 根据mh_id获取影厅信息
+  rpc GetMovieHallByMHId(GetMovieHallByMHIdReq) returns(GetMovieHallByMHIdRsp) {}
+}
+
+message LocationCinemaReq {
+
+  int64 locationId = 1; // 地点id
+
+}
+
+message LocationCinemaRsp {
+  repeated Cinema cinemas = 1 ;
+}
+
+message Cinema {
+
+  string cinemaName = 1 ; // 影院名字
+  string cinemaAddress = 2 ; // 影院位置
+  string cinemaSupport = 3 ; // 影院支持的功能比如改签，用|隔开
+  int64 cinemaCard = 4 ; // 是否支持影城卡
+  int64 cinemaMinPrice = 5 ; // 几元起
+  int64 cinemaDiscount = 6 ; // 最低减价多少
+  int64 cinemaId = 7 ; // 影院id
+}
+
+message GetCinemaMessageReq{
+
+  int64 movieId = 1; // 影片id
+  int64 locationId = 2 ; // 地点id
+  string day = 3 ; // 查询时间,今天明天后天
+}
+
+message GetCinemaMessageRsp{
+
+  string cinemaName = 1 ; // 影院名字
+  string cinemaAddress = 2 ; // 影院位置
+  string cinemaSupport = 3 ; // 影院支持的功能比如改签，用|隔开
+  int64 cinemaCard = 4 ; // 是否支持影城卡
+  int64 cinemaMinPrice = 5 ; // 几元起
+  int64 cinemaDiscount = 6 ; // 最低减价多少
+}
+
+message GetCinemaMessageByCidReq{
+
+  int64 cinemaId = 1 ;
+}
+
+message FilmMessage {
+
+  string filmName = 1 ;
+  float ratingFinal = 2 ;
+  int64 length = 3 ;
+  string type = 4 ; // 类型，如剧情
+  repeated string actorName = 5 ; // 主演名字
+  int64 movieId = 6 ; // 影片id
+  string img = 7 ; // 影片logo
+}
+
+message GetCinemaMessageByCidRsp{
+
+  Cinema cinema = 1 ;
+  repeated FilmMessage filmMessage = 2 ; // 影片信息
+}
+
+message GetMovieHallByMHIdReq{
+  int64 mhId = 1 ;
+}
+
+message GetMovieHallByMHIdRsp{
+  string mhAddress = 1 ;
+}
+
+message Movie{
+  string img = 1;
+  int64 movieId = 2;
+  string titleCn = 3;
+  string moviesSupportType = 4;
+  string filmDirector = 5;
+  string actors = 6;
+  string filmDrama = 7;
+  float ratingFinal = 8;
+}
+
+message HotMovie {
+  repeated string actorName = 1 ; // 演员名字
+  string commonSpecial = 2 ; // 影片简介
+  string directorName = 3 ; // 导演名字
+  string img = 4 ; // 影片logo
+  int64 is3D = 5 ; // 是否3D
+  int64 isDMAX = 6 ; // 是否DMAX
+  int64 isFilter = 7 ; // 是否过滤
+  int64 isHot = 8 ; // 是否热映
+  int64 isIMAX = 9 ; // 是否IMAX
+  int64 isIMAX3D = 10 ; // 是否IMAX3D
+  int64 isNew = 11 ; // 是否新上映
+  int64 length = 12 ; // 时长
+  int64 movieId = 13 ; // 电影时长
+  int64 rDay = 14 ; // 上映日期
+  int64 rMonth = 15 ; // 上映月份
+  int64 rYear = 16 ; // 上映年份
+  float ratingFinal = 17 ; // 最终评分
+  string t = 18 ; // 名字
+  string titleCn = 19 ; // 中文名字
+  string titleEn = 20 ; // 英文名字
+  string type = 21 ; // 影片类型
+  int64 wantedCount = 22 ; // 想看的人数
+}

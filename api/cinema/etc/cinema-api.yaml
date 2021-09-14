@@ -1,0 +1,8 @@
+Name: cinema-api
+Host: 0.0.0.0
+Port: 9092
+Cinema:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: cinema.rpc

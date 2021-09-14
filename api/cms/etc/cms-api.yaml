@@ -1,0 +1,8 @@
+Name: cms-api
+Host: 0.0.0.0
+Port: 9091
+Cms:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: cms.rpc
