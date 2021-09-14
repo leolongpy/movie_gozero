@@ -1,0 +1,7 @@
+Name: comment.rpc
+ListenOn: 127.0.0.1:8083
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: comment.rpc
+DataSource: root:root@tcp(localhost:3306)/movie

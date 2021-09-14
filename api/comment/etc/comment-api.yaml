@@ -1,0 +1,8 @@
+Name: comment-api
+Host: 0.0.0.0
+Port: 9093
+Comment:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: comment.rpc
