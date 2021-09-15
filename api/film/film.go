@@ -4,15 +4,16 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tal-tech/go-zero/core/logx"
-	"movie_gozero/api/cinema/internal/config"
-	"movie_gozero/api/cinema/internal/handler"
-	"movie_gozero/api/cinema/internal/svc"
+
+	"movie_gozero/api/film/internal/config"
+	"movie_gozero/api/film/internal/handler"
+	"movie_gozero/api/film/internal/svc"
 
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
 )
 
-var configFile = flag.String("f", "etc/cinema-api.yaml", "the config file")
+var configFile = flag.String("f", "etc/film-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()
