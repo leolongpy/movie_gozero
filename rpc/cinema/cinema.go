@@ -4,10 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tal-tech/go-zero/core/logx"
-	"movie_gozero/rpc/cinema/internal/db"
-	"time"
-
 	"movie_gozero/rpc/cinema/internal/config"
+	"movie_gozero/rpc/cinema/internal/db"
 	"movie_gozero/rpc/cinema/internal/server"
 	"movie_gozero/rpc/cinema/internal/svc"
 	"movie_gozero/rpc/cinema/pb"
@@ -27,11 +25,10 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 	srv := server.NewCinemaServiceExtServer(ctx)
 
-	fileName := time.Now().Format("20060102")
 	logc := logx.LogConf{
 		ServiceName: "cinema",
 		Mode:        "file",
-		Path:        "..\\logs\\cinema\\" + fileName,
+		Path:        "..\\logs\\cinema\\",
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()

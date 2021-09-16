@@ -1,0 +1,7 @@
+Name: place.rpc
+ListenOn: 127.0.0.1:9096
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: place.rpc
+DataSource: root:root@tcp(localhost:3306)/movie

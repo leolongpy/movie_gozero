@@ -4,10 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tal-tech/go-zero/core/logx"
-	"movie_gozero/rpc/comment/internal/db"
-	"time"
-
 	"movie_gozero/rpc/comment/internal/config"
+	"movie_gozero/rpc/comment/internal/db"
 	"movie_gozero/rpc/comment/internal/server"
 	"movie_gozero/rpc/comment/internal/svc"
 	"movie_gozero/rpc/comment/pb"
@@ -27,11 +25,10 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 	srv := server.NewCommentServiceExtServer(ctx)
 
-	fileName := time.Now().Format("20060102")
 	logc := logx.LogConf{
 		ServiceName: "comment",
 		Mode:        "file",
-		Path:        "..\\logs\\comment\\" + fileName,
+		Path:        "..\\logs\\comment\\",
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()

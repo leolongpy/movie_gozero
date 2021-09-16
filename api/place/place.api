@@ -1,0 +1,22 @@
+syntax = "v1"
+
+type Place {
+    Count int64 `json:"count"`
+    Id int64 `json:"id"`
+    N string `json:"n"`
+    PinyinFull string `json:"pinyinFull"`
+    PinyinShort string `json:"pinyinShort"`
+}
+
+type HotCitiesByCinemaReq {
+}
+
+type HotCitiesByCinemaRep {
+    P []*Place `json:"p"`
+}
+
+service place-api {
+    // 获取所有电影院的地点
+    @handler hotCitiesByCinema
+    post /place/hotCitiesByCinema (HotCitiesByCinemaReq) returns (HotCitiesByCinemaRep);
+}

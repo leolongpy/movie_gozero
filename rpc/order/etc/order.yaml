@@ -1,0 +1,7 @@
+Name: order.rpc
+ListenOn: 127.0.0.1:8085
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: order.rpc
+DataSource: root:root@tcp(localhost:3306)/movie

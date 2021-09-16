@@ -1,0 +1,143 @@
+syntax = "v1"
+
+type WantTicketReq {
+    UserId int64 `form:"userId"`
+    FilmId int64 `form:"filmId"`
+    Type int64 `form:"type"`
+}
+
+type WantTicketRsp {
+}
+
+type TicketReq {
+    UserId int64 `form:"userId"`
+    FilmId int64 `form:"filmId"`
+    MhId int64 `form:"mhId"`
+    X int64 `form:"x"`
+    Y int64 `form:"y"`
+    StartTime string `form:"startTime"`
+    EndTime string `form:"endTime"`
+}
+
+type TicketRsp {
+    OrderNumD int64 `json:"orderNumD"`
+}
+
+type Order {
+    OrderNum string `json:"orderNum"`
+    OrderPrice string `json:"orderPrice"`
+    CreateAt string `json:"createAt"`
+    PayAt string `json:"payAt"`
+    MhId int64 `json:"mhId"`
+    UserId int64 `json:"userId"`
+    MovieId int64 `json:"movieId"`
+}
+
+type MovieTicket {
+    FilmName string `json:"filmName"`
+    StartTime string `json:"startTime"`
+    Cinema string `json:"cinema"`
+    OrderNum string `json:"orderNum"`
+}
+
+type LookOrdersReq {
+    UserId int64 `form:"userId"`
+}
+
+type LookOrdersRsp {
+    MovieTickets []*MovieTicket `json:"movieTickets"`
+}
+
+type PayOrderReq {
+    OrderNum string `form:"orderNum"`
+    UserId int64 `form:"userId"`
+    Phone int64 `form:"phone"`
+}
+
+type PayOrderRsp {
+}
+
+type UndoOrderReq {
+    OrderId int64 `form:"orderId"`
+}
+
+type UndoOrderRsp {
+}
+
+type GetOrderMessageReq {
+    OrderNum string `form:"orderNum"`
+    UserId int64 `form:"userId"`
+}
+type GetOrderMessageRsp {
+    Ticketdetail TicketDetail `json:"ticketdetail"`
+}
+
+type TicketDetail {
+    FilmName string `json:"filmName"`
+    FilmImg string `json:"filmImg"`
+    StartTime string `json:"startTime"`
+    EndTime string `json:"endTime"`
+    CinemaName string `json:"cinemaName"`
+    MhName string `json:"mhName"`
+    Seat string `json:"seat"`
+    OrderNum string `json:"orderNum"`
+    CinemaAddress string `json:"cinemaAddress"`
+    Price float64 `json:"price"`
+    CreateAt string `json:"createAt"`
+    Phone int64 `json:"phone"`
+    CinemaPhone int64 `json:"cinemaPhone"`
+}
+type LookAlreadyOrdersReq {
+    UserId int64 `form:"userId"`
+}
+type LookAlreadyOrdersRsp {
+    TotalMovie int64 `json:"totalMovie"`
+    OneNoComment int64 `json:"oneNoComment"`
+    Movies []*AlreadyMovie `json:"movies"`
+}
+type AlreadyMovie {
+    FilmImg string `json:"filmImg"`
+    FilmName string `json:"filmName"`
+    Time string `json:"time"`
+    Director string `json:"director"`
+    ActorNames []string `json:"actorNames"`
+    OrderNum string `json:"orderNum"`
+}
+
+type OrderCommentReq {
+    UserId int64 `form:"userId"`
+    Score int64 `form:"score"`
+    CommentContent string `form:"commentContent"`
+    OrderNum string `form:"orderNum"`
+    MovieId int64 `form:"movieId"`
+}
+
+type OrderCommentRsp {
+}
+
+service order-api {
+    //想看
+    @handler wantTicket
+    post /order/wantTicket (WantTicketReq) returns (WantTicketRsp);
+    //下单
+    @handler ticket
+    post /order/ticket (TicketReq) returns (TicketRsp);
+    //支付
+    @handler payOrder
+    post /order/payOrder (PayOrderReq) returns (PayOrderRsp);
+    //取消订单
+    @handler undoOrder
+    post /order/undoOrder (UndoOrderReq) returns (UndoOrderRsp);
+    // 根据订单号获取电影票的信息
+    @handler getOrderMessage
+    post /order/getOrderMessage (GetOrderMessageReq) returns (GetOrderMessageRsp);
+    //查看所有电影票
+    @handler lookOrders
+    post /order/lookOrders (LookOrdersReq) returns (LookOrdersRsp);
+    //查看所有看过的电影票
+    @handler lookAlreadyOrders
+    post /order/lookAlreadyOrders (LookAlreadyOrdersReq) returns (LookAlreadyOrdersRsp);
+    // 进行评分
+    @handler orderComment
+    post /order/orderComment (OrderCommentReq) returns (OrderCommentRsp);
+}

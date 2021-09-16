@@ -4,8 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tal-tech/go-zero/core/logx"
-	"time"
-
 	"movie_gozero/api/comment/internal/config"
 	"movie_gozero/api/comment/internal/handler"
 	"movie_gozero/api/comment/internal/svc"
@@ -22,11 +20,10 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	fileName := time.Now().Format("20060102")
 	logc := logx.LogConf{
 		ServiceName: "comment",
 		Mode:        "file",
-		Path:        "..\\logs\\comment\\" + fileName,
+		Path:        "..\\logs\\comment\\",
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()

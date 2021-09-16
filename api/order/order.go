@@ -3,15 +3,17 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/core/logx"
+
+	"movie_gozero/api/order/internal/config"
+	"movie_gozero/api/order/internal/handler"
+	"movie_gozero/api/order/internal/svc"
+
+	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
-	"movie_gozero/api/user/internal/config"
-	"movie_gozero/api/user/internal/handler"
-	"movie_gozero/api/user/internal/svc"
 )
 
-var configFile = flag.String("f", "etc/user-api.yaml", "the config file")
+var configFile = flag.String("f", "etc/order-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()
@@ -20,9 +22,9 @@ func main() {
 	conf.MustLoad(*configFile, &c)
 
 	logc := logx.LogConf{
-		ServiceName: "user",
+		ServiceName: "order",
 		Mode:        "file",
-		Path:        "..\\logs\\user\\",
+		Path:        "..\\logs\\order\\",
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()

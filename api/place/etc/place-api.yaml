@@ -1,0 +1,8 @@
+Name: place-api
+Host: 0.0.0.0
+Port: 9096
+Place:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: place.rpc

@@ -4,8 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tal-tech/go-zero/core/logx"
-	"time"
-
 	"movie_gozero/api/cms/internal/config"
 	"movie_gozero/api/cms/internal/handler"
 	"movie_gozero/api/cms/internal/svc"
@@ -22,11 +20,10 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	fileName := time.Now().Format("20060102")
 	logc := logx.LogConf{
 		ServiceName: "cms",
 		Mode:        "file",
-		Path:        "..\\logs\\cms\\" + fileName,
+		Path:        "..\\logs\\cms\\",
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()

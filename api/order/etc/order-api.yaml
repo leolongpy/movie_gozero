@@ -1,0 +1,8 @@
+Name: order-api
+Host: 0.0.0.0
+Port: 9095
+Order:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: order.rpc

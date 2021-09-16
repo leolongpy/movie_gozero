@@ -4,18 +4,19 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tal-tech/go-zero/core/logx"
-	"movie_gozero/rpc/cms/internal/config"
-	"movie_gozero/rpc/cms/internal/db"
-	"movie_gozero/rpc/cms/internal/server"
-	"movie_gozero/rpc/cms/internal/svc"
-	"movie_gozero/rpc/cms/pb"
+	"movie_gozero/rpc/order/internal/db"
+
+	"movie_gozero/rpc/order/internal/config"
+	"movie_gozero/rpc/order/internal/server"
+	"movie_gozero/rpc/order/internal/svc"
+	"movie_gozero/rpc/order/pb"
 
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/zrpc"
 	"google.golang.org/grpc"
 )
 
-var configFile = flag.String("f", "etc/cms.yaml", "the config file")
+var configFile = flag.String("f", "etc/order.yaml", "the config file")
 
 func main() {
 	flag.Parse()
@@ -23,12 +24,12 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
-	srv := server.NewCMSServiceServer(ctx)
+	srv := server.NewOrderServiceExtServer(ctx)
 
 	logc := logx.LogConf{
-		ServiceName: "cms",
+		ServiceName: "order",
 		Mode:        "file",
-		Path:        "..\\logs\\cms\\",
+		Path:        "..\\logs\\order\\",
 	}
 	logx.MustSetup(logc)
 	defer logx.Close()
@@ -36,7 +37,7 @@ func main() {
 	db.Init(c.DataSource)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		pb.RegisterCMSServiceServer(grpcServer, srv)
+		pb.RegisterOrderServiceExtServer(grpcServer, srv)
 	})
 	defer s.Stop()
 
